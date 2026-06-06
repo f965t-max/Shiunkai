@@ -24,9 +24,23 @@
 				</button>
 				<ul id="navde" class="nav-menu">
 					<li><a href="shiunkai.html">ホーム</a></li>
-					<li><a href="#senkou">2026年度入会選考について</a></li>
-					<li><a href="#sennkou1">選考結果</a></li>
-					<li><a href="gaiyou.html">志雲会の概要・合格実績・歴史</a></li>
+					<li class="dropdown">
+						<a href="#">2026年度入会選考 ▼</a>
+					
+						<ul class="dropdown-menu">
+							<li><a href="#senkou">入会選考について</a></li>
+							<li><a href="#sennkou1">選考結果</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a>志雲会について ▼</a>
+					
+						<ul class="dropdown-menu">
+							<li><a href="#senkou">概要</a></li>
+							<li><a href="#sennkou1">合格実績</a></li>
+							<li><a href="#sennkou1">歴史</a></li>
+						</ul>
+					</li>
 					<li><a href="katsudou.html">活動内容</a></li>
 					<li><a href="#kenkyu">専用研究室について</a></li>
 					<li>
@@ -43,6 +57,25 @@
 		<section id="shiunkaitoha">
 			<a href="shiunkaitoha.html"><h2>志雲会とは?</h2>
 			<img src="志雲会　ロゴマーク.png">
+			<p class="shiunkai-catch">
+				私たちは公認会計士受験団体です
+			</p>
+			<div class="shiunkai-features">
+				<div class="feature-box">
+					<span class="feature-number">1968年</span>
+					<p>創立</p>
+				</div>
+			
+				<div class="feature-box">
+					<span class="feature-number">2桁</span>
+					<p>直近2年間合格者</p>
+				</div>
+			
+				<div class="feature-box">
+					<span class="feature-number">OB・OG</span>
+					<p>とのつながり</p>
+				</div>
+			</div>
 			</a>
 		
 		</section>
@@ -55,7 +88,7 @@
 				<a href="gaiyou.html" class="carousel-card card-1">
 					<div class="card-inner">
 						<h3>概要・合格実績・歴史</h3>
-						<p>創立55年を超える伝統と実績のディテールはこちら。</p>
+						<p>創立55年を超える伝統と実績の詳細はこちら。</p>
 						<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
 					</div>
 				</a>
@@ -85,7 +118,21 @@
 
 		<a href="gaiyou.html">
 			<div id="goukaku">
-				<h2>概要・合格実績・歴史</h2>
+				<h2>概要</h2>
+				<p>創立55年を超える伝統と、直近2年で2桁合格を誇る圧倒的な実績の詳細はこちらからご覧いただけます。</p>
+				<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
+			</div>
+		</a>
+		<a href="gaiyou.html">
+			<div id="goukaku">
+				<h2>合格実績</h2>
+				<p>創立55年を超える伝統と、直近2年で2桁合格を誇る圧倒的な実績の詳細はこちらからご覧いただけます。</p>
+				<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
+			</div>
+		</a>
+		<a href="gaiyou.html">
+			<div id="goukaku">
+				<h2>歴史</h2>
 				<p>創立55年を超える伝統と、直近2年で2桁合格を誇る圧倒的な実績の詳細はこちらからご覧いただけます。</p>
 				<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
 			</div>
@@ -102,16 +149,17 @@
 				<img src="活動内容.jpg" alt="活動内容">
 			</a>
 		</section>
-
-		<section id="kenkyu">
-			<h2>専用研究室について</h2>
-			<p>
-				2024年より、多摩学生研究棟（炎の塔）1階に専用の固定席研究室を設置しています。<br>
-				冷暖房完備で、大量の参考書や問題集を保管できる個人スペースも確保されており、24時間いつでも試験勉強に没頭できる最高峰の環境が整っています。
-			</p>
-			<img src="専用研究室について.jpg" alt="専用研究室">
-		</section>
 		<a href="kenkyu.html">
+			<section id="kenkyu">
+				<h2>専用研究室について</h2>
+				<p>
+					2024年より、多摩学生研究棟（炎の塔）1階に専用の固定席研究室を設置しています。<br>
+					冷暖房完備で、大量の参考書や問題集を保管できる個人スペースも確保されており、24時間いつでも試験勉強に没頭できる最高峰の環境が整っています。
+				</p>
+				<img src="専用研究室について.jpg" alt="専用研究室">
+			</section>
+		</a>
+		
 			<section id="senkou">
 				<h2>2026年度入会選考</h2>
 				<p>
@@ -122,34 +170,22 @@
 				<img src="2026年度入会選考.jpg" alt="2026年度入会選考">
 			</section>
 		</a>
-		<a href=""
+	
 			<section id="sennkou1">
+				<a href="senkoukekka.html">
 				<h2>選考結果</h2>
-				<p>
-					2026年度選考結果
-					志雲会へのたくさんのエントリー、誠にありがとうございました。
-					
-					厳選なる審査の結果、本年度の合格者を以下の通り決定いたしました。
-					
-					
-					合格者内訳
-					・男子：11名
-					
-					・女子：10名
-					
-					本選考を終えて
-					本年度は例年の約2倍という予想をはるかに上回るエントリーをいただきました。特に男子は約40名の方がエントリーくださり、非常に優秀な方が多く、選考は最後まで困難を極めましたが、熱意溢れる21名を仲間に迎え入れることとなりました。
-					
-					選外となった方の思いも背負い、合格した皆さんはこれから志雲会の「仲間」としてともに公認会計士試験の合格を目指して頑張りましょう。
-					
-					※今後の手続きは公式ラインより順次ご連絡いたします。
-
-				</p>
 				<img src="S__16646155_0.jpg">
-
-
+				</a>
+			</section>
+			<section>
+				活動場所
 			</section>
 		
+		
+
+	</main>
+
+	<footer>
 		<div id="SNS">
 			<p class="sns-heading">各種SNSはこちら</p>
 			<div class="sns-links">
@@ -158,16 +194,16 @@
 				<a href="https://x.com/chuo_shiunkai?s=21"><img src="X.png"></a>
 			</div>
 		</div>
-
-	</main>
-
-	<footer>
+		
 		<section>
 			<p>&copy;中央大学志雲会 ALL Rights Reserved.</p>
 		</section>
 		<section>
 			<a class="btn btn-primary" href="#">ページ上部&#8593;</a>
 		</section>
+		<a href="shiunkai.html" class="nav-logo">
+			<img id="shiunkai" src="志雲会　ロゴマーク.jpg" alt="志雲会 ロゴ">
+		</a>
 	</footer>
 </body>
 
