@@ -1,45 +1,16 @@
 /* =========================================================
    志雲会 共通スクリプト  script.js
-   - ハンバーガーメニュー（全ページ共通）
-   - 3D カルーセル（自動回転 / ボタン / タッチスワイプ）
+   3D カルーセル（自動回転 / ボタン / タッチスワイプ）
+   ※ カルーセルが無いページでは何もしない
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-    initNav();
-    initCarousel();
-});
-
-/* ---- モバイル用ハンバーガーメニュー ---- */
-function initNav() {
-    const toggle = document.querySelector(".nav-toggle");
-    const menu = document.getElementById("navde");
-    if (!toggle || !menu) return;
-
-    const setState = (open) => {
-        menu.classList.toggle("is-open", open);
-        toggle.classList.toggle("is-open", open);
-        toggle.setAttribute("aria-expanded", String(open));
-        toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
-    };
-
-    toggle.addEventListener("click", () => {
-        setState(!menu.classList.contains("is-open"));
-    });
-
-    // メニュー内のリンクをタップしたら自動で閉じる
-    menu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => setState(false));
-    });
-}
-
-/* ---- 3D カルーセル ---- */
-function initCarousel() {
     const stage = document.querySelector(".carousel-stage");
     const viewport = document.querySelector(".carousel-viewport");
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
 
-    // カルーセルが無いページ（katsudou など）では何もしない
+    // カルーセルが無いページ（katsudou など）では処理を止める
     if (!stage || !viewport) return;
 
     const STEP = 90;        // 1 枚分の回転角
@@ -67,7 +38,7 @@ function initCarousel() {
         autoTimer = null;
     };
 
-    // ─── ボタン操作（PC 用。モバイルでは CSS で非表示） ───
+    // ─── ボタン操作 ───
     nextBtn?.addEventListener("click", () => { rotate(-1); startAuto(); });
     prevBtn?.addEventListener("click", () => { rotate(1); startAuto(); });
 
@@ -76,7 +47,7 @@ function initCarousel() {
     viewport.addEventListener("mouseleave", startAuto);
 
     // ─── モバイル: タッチスワイプ ───
-    const SWIPE_THRESHOLD = 40; // この距離(px)以上で 1 枚送る
+    const SWIPE_THRESHOLD = 40; // この距離(px)以上で1枚送る
     let startX = 0;
     let startY = 0;
     let tracking = false;
@@ -95,13 +66,20 @@ function initCarousel() {
         const dx = e.changedTouches[0].clientX - startX;
         const dy = e.changedTouches[0].clientY - startY;
 
-        // 横移動が縦より大きい＝意図的な横スワイプのときだけ反応
+        // 横方向の移動が縦より大きい＝意図的な横スワイプのときだけ反応
         if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
-            rotate(dx < 0 ? -1 : 1); // 左スワイプ→次 / 右スワイプ→前
+            rotate(dx < 0 ? -1 : 1); // 左へスワイプ→次 / 右へスワイプ→前
         }
         startAuto();
     }, { passive: true });
 
     // ─── 初期起動 ───
     startAuto();
-}
+});
+
+const menuBtn = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
