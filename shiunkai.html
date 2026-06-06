@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>中央大学　志雲会　ホームページ</title>
+	<link href="shiunkai.css" rel="stylesheet">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<header>
+		<nav aria-label="メインナビゲーション">
+			<div id="nav">
+				<a href="shiunkai.html" class="nav-logo">
+					<img id="shiunkai" src="志雲会　ロゴマーク.png" alt="志雲会 ロゴ">
+				</a>
+				<button class="nav-toggle" type="button" aria-label="メニューを開く"
+					aria-expanded="false" aria-controls="navde">
+					<span class="nav-toggle-bar"></span>
+					<span class="nav-toggle-bar"></span>
+					<span class="nav-toggle-bar"></span>
+				</button>
+				<ul id="navde" class="nav-menu">
+					<li><a href="shiunkai.html">ホーム</a></li>
+					<li><a href="#senkou">2026年度入会選考について</a></li>
+					<li><a href="#senkou">選考結果</a></li>
+					<li><a href="gaiyou.html">志雲会の概要・合格実績・歴史</a></li>
+					<li><a href="katsudou.html">活動内容</a></li>
+					<li><a href="#kenkyu">専用研究室について</a></li>
+					<li>
+						<a href="https://www.instagram.com/chuo_shiunkai?igsh=Y2Zmd3ZvMWU2b3dw&utm_source=qr"
+							target="_blank" rel="noopener noreferrer">
+							<img id="inst" src="Instagram.png" alt="Instagram">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<section id="shiunkaitoha">
+			<h2>志雲会とは</h2>
+			<p>
+				『志雲会』は1968年に設立された少数精鋭型の公認会計士受験団体(サークル)です。<br>
+				創立以来多数の公認会計士試験合格者を輩出し、OBOGは様々なフィールドで活躍しています。<br>
+				近年の合格実績は、中央大学内の公認会計士受験団体ではトップクラスです。<br>
+				また、本会では、横のつながりだけでなく縦のつながりを重視しており、監査・会計の分野で活躍されているOBOGとも繋がることができます。
+			</p>
+		</section>
+
+		<div class="carousel-viewport">
+			<button class="carousel-btn prev-btn" type="button" aria-label="前のカードへ">&#10094;</button>
+			<button class="carousel-btn next-btn" type="button" aria-label="次のカードへ">&#10095;</button>
+
+			<div class="carousel-stage">
+				<a href="gaiyou.html" class="carousel-card card-1">
+					<div class="card-inner">
+						<h3>概要・合格実績・歴史</h3>
+						<p>創立55年を超える伝統と実績のディテールはこちら。</p>
+						<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
+					</div>
+				</a>
+				<a href="katsudou.html" class="carousel-card card-2">
+					<div class="card-inner">
+						<h3>活動内容</h3>
+						<p>勉強会や合宿、オフィスツアーなど年間スケジュールを紹介。</p>
+						<img src="活動内容.jpg" alt="活動内容">
+					</div>
+				</a>
+				<div class="carousel-card card-3">
+					<div class="card-inner">
+						<h3>専用研究室について</h3>
+						<p>炎の塔1階。24時間いつでも勉強に没頭できる最高峰の環境。</p>
+						<img src="専用研究室について.jpg" alt="専用研究室">
+					</div>
+				</div>
+				<a href="#senkou" class="carousel-card card-4">
+					<div class="card-inner" id="senkou-card">
+						<h3>2026年度入会選考</h3>
+						<p>本気で公認会計士を目指す熱意のある仲間を歓迎します。</p>
+						<img src="2026年度入会選考.jpg" alt="2026年度入会選考">
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<a href="gaiyou.html">
+			<div id="goukaku">
+				<h2>概要・合格実績・歴史</h2>
+				<p>創立５５年を超える伝統と、直近２年で２桁合格を誇る圧倒的な実績の詳細はこちらからご覧いただけます。</p>
+				<img src="概要・合格実績・歴史.png" alt="概要・合格実績・歴史">
+			</div>
+		</a>
+
+		<section>
+			<a href="katsudou.html">
+				<h2>活動内容</h2>
+				<p>
+					週に数回の自習・勉強会を中心に、仲間と切磋琢磨しながら公認会計士試験の現役合格を目指します。<br>
+					先輩による手厚い学習サポートや、定期的な進捗確認があるため、初心者からでも安心して勉強に集中できる環境です。<br>
+					また、試験後には懇親会などのイベントも行い、メリハリのある活動をしています。
+				</p>
+				<img src="活動内容.jpg" alt="活動内容">
+			</a>
+		</section>
+
+		<section id="kenkyu">
+			<h2>専用研究室について</h2>
+			<p>
+				2024年より、多摩学生研究棟（炎の塔）1階に専用の固定席研究室を設置しています。<br>
+				冷暖房完備で、大量の参考書や問題集を保管できる個人スペースも確保されており、24時間いつでも試験勉強に没頭できる最高峰の環境が整っています。
+			</p>
+			<img src="専用研究室について.jpg" alt="専用研究室">
+		</section>
+
+		<section id="senkou">
+			<h2>2026年度入会選考</h2>
+			<p>
+				志雲会では、2026年度の新入会員を募集しています。<br>
+				「志は雲の如く高く」の理念のもと、本気で公認会計士を目指す熱意のある仲間を歓迎します。<br>
+				選考日程や試験内容（面接・筆記等）の詳細は、確定し次第こちらのスペースおよび各種SNS（Instagram等）にて告知いたします。
+			</p>
+			<img src="2026年度入会選考.jpg" alt="2026年度入会選考">
+		</section>
+
+		<p class="sns-heading">各種SNSはこちら</p>
+		<div class="sns-links">
+			<img src="LINE.png" alt="LINE">
+			<img src="Instagram.png" alt="Instagram">
+		</div>
+	</main>
+
+	<footer>
+		<section>
+			<p>&copy;中央大学志雲会 ALL Rights Reserved.</p>
+		</section>
+		<section>
+			<a class="btn btn-primary" href="#">ページ上部&#8593;</a>
+		</section>
+	</footer>
+</body>
+
+</html>
