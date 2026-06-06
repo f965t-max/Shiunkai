@@ -1,0 +1,438 @@
+/* =========================================================
+   志雲会 共通スタイル  shiunkai.css
+   カラー: 志雲会レッド #a71d2a / 濃赤 #75101a
+   ========================================================= */
+
+/* ---- デザイントークン ---- */
+:root {
+    --color-primary: #a71d2a;
+    --color-primary-dark: #75101a;
+    --color-text: #333333;
+    --color-bg: #fcfcfc;
+    --shadow-card: 0 2px 15px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 25px rgba(167, 29, 42, 0.12);
+    --radius: 8px;
+    --content-width: 1000px;
+}
+
+/* ---- リセット & 基本 ---- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN',
+                 'Hiragino Sans', Meiryo, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---- ヘッダー / ナビゲーション ---- */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 20px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+}
+
+.nav-menu a {
+    display: inline-block;
+    padding: 6px 10px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    color: #555555;
+    transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--color-primary);
+}
+
+/* ハンバーガーボタン（PC では非表示。モバイルのみ表示） */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.nav-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--color-primary);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* 開いているときに「×」へ変形 */
+.nav-toggle.is-open .nav-toggle-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.is-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.nav-toggle.is-open .nav-toggle-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+#shiunkai {
+    height: 5em;
+    width: auto;
+    object-fit: contain;
+}
+
+#inst {
+    height: 1.7em;
+    width: auto;
+}
+
+/* ---- メイン ---- */
+main {
+    display: block;
+    max-width: var(--content-width);
+    margin: 0 auto 40px;
+    padding: 30px 20px 0;
+}
+
+/* セクション共通カード（白ボックス＋左赤線） */
+.card,
+#shiunkaitoha,
+#goukaku,
+main > section {
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 30px;
+    margin-bottom: 35px;
+    box-shadow: var(--shadow-card);
+    border-left: 5px solid var(--color-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+                border-left-width 0.2s ease;
+}
+
+.card:hover,
+#shiunkaitoha:hover,
+#goukaku:hover,
+main > section:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-left-width: 10px;
+}
+
+#shiunkaitoha {
+    margin-top: 0;
+}
+
+/* 見出し（旧 <li> → <h2>） */
+main h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #efefef;
+}
+
+main p {
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* 本文画像 */
+main img {
+    display: block;
+    margin: 20px auto 0;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* リンクで囲んだカードの色・下線リセット（:visited 対策で specificity を確保） */
+main a:link,
+main a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ページ内アンカーがヘッダー（sticky）に隠れないように */
+#senkou,
+#kenkyu {
+    scroll-margin-top: 100px;
+}
+
+/* SNS 見出し・アイコン */
+.sns-heading {
+    text-align: center;
+    font-weight: bold;
+    color: #666666;
+    margin-top: 30px;
+}
+
+.sns-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.sns-links img {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* ---- ボタン ---- */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 赤塗りボタン（ページ上部へ等） */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(117, 16, 26, 0.4);
+    transform: translateY(-3px);
+}
+
+/* 白抜きボタン（ホームに戻る等） */
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(167, 29, 42, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ---- フッター ---- */
+footer {
+    background-color: #222222;
+    color: #ffffff;
+    padding: 40px 20px;
+    margin-top: 80px;
+}
+
+footer section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+footer p {
+    color: #ffffff;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* ---- 3D カルーセル ---- */
+.carousel-viewport {
+    width: 100%;
+    height: 500px;
+    perspective: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 50px 0;
+}
+
+.carousel-stage {
+    width: 280px;
+    height: 380px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    touch-action: pan-y; /* 縦スクロールは残し、横スワイプを拾う */
+}
+
+.carousel-card {
+    position: absolute;
+    width: 280px;
+    height: 380px;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+}
+
+.card-inner {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid var(--color-primary);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.card-1 { transform: rotateY(0deg)   translateZ(320px); }
+.card-2 { transform: rotateY(90deg)  translateZ(320px); }
+.card-3 { transform: rotateY(180deg) translateZ(320px); }
+.card-4 { transform: rotateY(270deg) translateZ(320px); }
+
+.carousel-card:hover .card-inner {
+    border-left-width: 12px;
+    box-shadow: 0 15px 35px rgba(167, 29, 42, 0.25);
+    transform: scale(1.03);
+}
+
+.card-inner h3 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #efefef;
+}
+
+.card-inner p {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    height: 70px;
+    overflow: hidden;
+}
+
+.card-inner img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(167, 29, 42, 0.8);
+    color: #ffffff;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-btn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+/* ---- レスポンシブ（モバイル：768px 以下） ---- */
+@media (max-width: 768px) {
+    #shiunkai { height: 3.2em; }
+
+    /* メインの余白を圧縮して画面を広く使う */
+    main { padding: 20px 12px 0; }
+    .card,
+    #shiunkaitoha,
+    #goukaku,
+    main > section {
+        padding: 20px 15px;
+        margin-bottom: 24px;
+    }
+
+    /* ハンバーガーボタンを表示 */
+    .nav-toggle { display: flex; }
+
+    /* メニューを「縦並びの折りたたみ」に切り替え */
+    .nav-menu {
+        flex-basis: 100%;        /* 折り返して 1 行まるごと使う */
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        max-height: 0;           /* 初期は閉じる */
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+    .nav-menu.is-open {
+        max-height: 70vh;        /* 開いたとき */
+        overflow-y: auto;
+    }
+    .nav-menu li {
+        width: 100%;
+        border-top: 1px solid #f0f0f0;
+    }
+    /* タッチターゲットを 44px 以上に確保 */
+    .nav-menu a {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+        padding: 12px 16px;
+        font-size: 1rem;
+        white-space: normal;
+    }
+
+    /* カルーセル矢印を隠す（操作はスワイプのみ） */
+    .prev-btn,
+    .next-btn { display: none; }
+
+    /* 主要ボタンのタッチ領域を確保 */
+    .btn {
+        padding: 14px 28px;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel-viewport { height: 440px; }
+}

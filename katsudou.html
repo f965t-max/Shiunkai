@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年間活動スケジュール - 中央大学 志雲会</title>
+    <link href="shiunkai.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <style>
+        /* katsudou.html 専用：年間スケジュール用スタイル */
+
+        /* 導入ブロック（共通カードをピンク背景で上書き：class なので !important 不要） */
+        .schedule-intro {
+            background-color: #fff5f5;
+        }
+        .schedule-intro p {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        /* タイムライン全体 */
+        .timeline-container {
+            position: relative;
+            margin-top: 40px;
+            padding-left: 20px;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 45px;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: repeating-linear-gradient(to bottom,
+                #feb2b2, #feb2b2 4px, transparent 4px, transparent 8px);
+        }
+
+        /* 各月ブロック */
+        .month-block {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            margin-left: 50px;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px 25px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--color-primary);
+            position: relative;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease,
+                        border-left-width 0.2s ease;
+        }
+        .month-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(167, 29, 42, 0.12);
+            border-left-width: 10px;
+        }
+
+        /* 月の丸バッジ */
+        .month-badge {
+            position: absolute;
+            left: -75px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg,
+                var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        /* イベントテキスト */
+        .event-content {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.8;
+        }
+        .event-content.celebrate {
+            color: var(--color-primary);
+        }
+
+        /* 試験など重要イベント */
+        .exam-event {
+            color: #c53030;
+            background: #fff5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            .timeline-container::before { left: 20px; }
+            .month-block { margin-left: 35px; padding: 15px; }
+            .month-badge {
+                left: -47px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="メインナビゲーション">
+            <div id="nav">
+                <a href="shiunkai.html" class="nav-logo">
+                    <img id="shiunkai" src="志雲会　ロゴマーク.png" alt="志雲会 ロゴ">
+                </a>
+                <button class="nav-toggle" type="button" aria-label="メニューを開く"
+                    aria-expanded="false" aria-controls="navde">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                <ul id="navde" class="nav-menu">
+                    <li><a href="shiunkai.html">ホーム</a></li>
+                    <li><a href="shiunkai.html#senkou">選考結果</a></li>
+                    <li><a href="shiunkai.html#senkou">2026年度入会選考について</a></li>
+                    <li><a href="gaiyou.html">志雲会の概要・合格実績</a></li>
+                    <li><a href="katsudou.html">活動内容</a></li>
+                    <li><a href="shiunkai.html#kenkyu">専用研究室について</a></li>
+                    <li>
+                        <a href="https://www.instagram.com/chuo_shiunkai?igsh=Y2Zmd3ZvMWU2b3dw&utm_source=qr"
+                            target="_blank" rel="noopener noreferrer">
+                            <img id="inst" src="Instagram.png" alt="Instagram">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="schedule-intro">
+            <h2>年間活動スケジュール</h2>
+            <p>
+                志雲会では、学習活動との両立を前提としつつ、息抜きやモチベーション維持のための行事が複数あります。<br>
+                本会の行事には原則参加が必須になります。ただし、やむを得ない場合に関しては柔軟に対応します。<br>
+                <strong>＊試験直前期はイベントを行わず、全員が学習に集中できる環境を整えています。</strong>
+            </p>
+        </section>
+
+        <div class="timeline-container">
+
+            <div class="month-block">
+                <div class="month-badge">4月</div>
+                <div class="event-content">入会選考</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">5月</div>
+                <div class="event-content">
+                    顔合わせ<br>
+                    OBOG新歓<br>
+                    <span class="exam-event">◆ 第II回公認会計士短答式試験</span>
+                </div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">6月</div>
+                <div class="event-content">総会 ＆ 簿記・短答お疲れ様会</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">7月</div>
+                <div class="event-content">監査法人オフィスツアー</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">8月</div>
+                <div class="event-content">
+                    <span class="exam-event">◆ 公認会計士論文式試験</span><br>
+                    監査法人オフィスツアー
+                </div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">9月</div>
+                <div class="event-content">夏合宿</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">10月</div>
+                <div class="event-content">監査法人オフィスツアー</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">11月</div>
+                <div class="event-content">監査法人オフィスツアー</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">12月</div>
+                <div class="event-content">
+                    <span class="exam-event">◆ 第I回公認会計士短答式試験</span><br>
+                    忘年会
+                </div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">1月</div>
+                <div class="event-content">総会</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">2月</div>
+                <div class="event-content celebrate">🎉 公認会計士試験合格祝賀会</div>
+            </div>
+
+            <div class="month-block">
+                <div class="month-badge">3月</div>
+                <div class="event-content">追い出しコンパ</div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin: 50px 0 20px;">
+            <a class="btn btn-outline" href="shiunkai.html">← ホームに戻る</a>
+        </div>
+    </main>
+
+    <footer>
+        <section>
+            <p>&copy;中央大学志雲会 ALL Rights Reserved.</p>
+        </section>
+        <section>
+            <a class="btn btn-primary" href="#">ページ上部&#8593;</a>
+        </section>
+    </footer>
+</body>
+
+</html>
