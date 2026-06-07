@@ -4,7 +4,7 @@
    ※ カルーセルが無いページでは何もしない
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
     const stage = document.querySelector(".carousel-stage");
     const viewport = document.querySelector(".carousel-viewport");
     const prevBtn = document.querySelector(".prev-btn");
@@ -107,4 +107,3 @@ menuBtn.addEventListener('click', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 });
-

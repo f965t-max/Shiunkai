@@ -20,7 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border:soli;
+    border:dotte;
 }
 
 body {
@@ -1147,3 +1147,536 @@ body {
     transform: translateY(0); /* 元の位置に戻る */
 }
 
+/* ==========================================================================
+   SMART HORIZONTAL CAROUSEL (フラット・横スクロールカルーセル)
+   ========================================================================== */
+
+/* 1. 外枠：はみ出たカードを横スクロールさせ、スナップさせる設定 */
+.carousel-viewport {
+    width: 100%;
+    overflow-x: auto;          /* 横スクロールを許可 */
+    overflow-y: hidden;        /* 縦方向のはみ出しは隠す */
+    padding: 20px 10px 30px;   /* カードの影が綺麗に見えるように下部余白を確保 */
+    background: transparent;
+    
+    /* スマホで指を離してもしばらく滑らかに慣性スクロールする設定 */
+    -webkit-overflow-scrolling: touch; 
+    
+    /* スナップ機能：スクロールを止めたとき、カードがピタッと綺麗に中央で止まる */
+    scroll-snap-type: x mandatory; 
+}
+
+/* PC等で見たときのスクロールバーを細くスタイリッシュに装飾 */
+.carousel-viewport::-webkit-scrollbar {
+    height: 6px;
+}
+.carousel-viewport::-webkit-scrollbar-thumb {
+    background: rgba(167, 29, 42, 0.2); /* 志雲会レッドを上品に薄く */
+    border-radius: 10px;
+}
+.carousel-viewport::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* 2. ステージ：カードを一列に折り返さず横並びにする */
+.carousel-stage {
+    display: flex;
+    gap: 20px;                 /* カード同士の間隔 */
+    width: max-content;        /* 中身のカードの総横幅に自動で合わせる */
+    padding: 0 10px;
+}
+
+/* 3. 各カードの幅と止まる位置（スナップ）の設定 */
+.carousel-card {
+    display: block;
+    width: 290px;              /* スマホ・PC問わず美しく収まる最適なカード幅 */
+    flex-shrink: 0;            /* 画面幅に合わせてカードが潰れるのを防ぐ */
+    scroll-snap-align: center; /* スクロールが止まる位置をカードの中央に固定 */
+    transition: transform 0.3s ease;
+}
+
+/* 4. カードの内側デザイン：上品で清潔感のあるミニマルスタイル */
+.card-inner {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px 20px;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-inner h3 {
+    font-size: 1.15rem;
+    color: var(--color-primary, #a71d2a);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.card-inner p {
+    font-size: 0.85rem;
+    color: #666666;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.card-inner img {
+    width: 100%;
+    height: 155px;
+    object-fit: cover;         /* 画像の比率を崩さずに長方形に切り抜く */
+    border-radius: 8px;
+}
+
+/* 5. ホバー時（PC）のマイルドで高級感のある浮き上がり演出 */
+.carousel-card:hover {
+    transform: translateY(-5px); /* 少し上に浮き上がらせる */
+}
+.carousel-card:hover .card-inner {
+    box-shadow: 0 12px 24px rgba(167, 29, 42, 0.08); /* 志雲会レッドの淡い影 */
+    border-color: rgba(167, 29, 42, 0.2);
+}
+
+/* ==========================================================================
+   SMART HORIZONTAL SCROLL FOR SELECTION (入会選考・横スクロール化)
+   ========================================================================== */
+
+/* 1. スクロールを検知する外枠：はみ出たカードを横スクロールさせる */
+.senkou-scroll-viewport {
+    width: 100%;
+    overflow-x: auto;          /* 横スクロールを許可 */
+    overflow-y: hidden;        /* 縦方向のはみ出しは隠す */
+    padding: 10px 5px 25px;    /* カードの影がきれいに映るよう下部に余白を確保 */
+    margin-bottom: 30px;
+    
+    /* スマホで指を離したあとも滑らかにスクロールさせる慣性設定 */
+    -webkit-overflow-scrolling: touch; 
+    
+    /* スナップ機能：スクロールを止めたとき、カードがピタッと綺麗に中央で止まる */
+    scroll-snap-type: x mandatory; 
+}
+
+/* PC等で見えるスクロールバーをスタイリッシュに細くデザイン */
+.senkou-scroll-viewport::-webkit-scrollbar {
+    height: 5px;
+}
+.senkou-scroll-viewport::-webkit-scrollbar-thumb {
+    background: rgba(167, 29, 42, 0.15); /* 志雲会レッドを薄く */
+    border-radius: 10px;
+}
+.senkou-scroll-viewport::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+/* 2. ステージ：カードを一列に折り返さず横並びにする */
+.senkou-scroll-stage {
+    display: flex;
+    gap: 20px;                 /* カード同士の間隔 */
+    width: max-content;        /* カードの総幅に自動で合わせる */
+    padding: 0 10px;
+}
+
+/* 3. 各カードの横幅と止まる位置の設定 */
+.senkou-card {
+    width: 300px;              /* スマホでも画面に綺麗に収まり、PCでも見やすい最適な横幅 */
+    flex-shrink: 0;            /* 画面幅に合わせてカードが潰れるのを防ぐ */
+    scroll-snap-align: center; /* スクロールが止まる位置をカードの中央に固定 */
+    
+    background: #fdfdfd;
+    border: 1px solid #eeeeee;
+    border-top: 3px solid var(--color-primary, #a71d2a);
+    border-radius: 8px;
+    padding: 24px 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ホバー時のマイルドな浮き上がり（PC用） */
+.senkou-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(167, 29, 42, 0.05);
+}
+
+/* ─── 以下は共通装飾スタイル ─── */
+.senkou-card h3 {
+    font-size: 1.15rem;
+    color: #333333;
+    margin-bottom: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.senkou-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.senkou-card ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #444444;
+    line-height: 1.5;
+}
+
+.senkou-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--color-primary, #a71d2a);
+    border-radius: 50%;
+}
+
+.sub-text {
+    font-size: 0.85rem;
+    color: #777777;
+    display: inline-block;
+    margin-top: 2px;
+}
+
+/* =========================================================
+   フッター全体の背景色変更・中央揃えスタイル
+   ========================================================= */
+   footer {
+    background: #C11E21; /* 背景色をご指定の #C11E21 に変更 */
+    color: #ffffff;      /* 文字色を白に固定 */
+    padding: 50px 20px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+/* SNSブロック */
+#SNS {
+    margin-bottom: 35px;
+}
+
+.sns-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #ffffff; /* 見出し文字も白で統一 */
+}
+
+/* SNSアイコンの並び */
+.sns-links {
+    display: table;
+    margin: 0 auto;
+}
+
+.sns-links a {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15px;
+    transition: transform 0.2s;
+}
+
+.sns-links a:hover {
+    transform: scale(1.15);
+}
+
+.sns-links img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    display: block;
+    /* 背景が赤いため、アイコンを見やすくする軽い白の陰影（不要なら消してOKです） */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)); 
+}
+
+/* フッターの中央・下部コンテンツ */
+.footer-bottom {
+    margin: 0 auto 30px;
+    max-width: 600px;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85); /* 著作権テキストを少しだけ透過させて上品に */
+    margin-bottom: 20px;
+}
+
+/* ページ上部へ戻るボタン */
+.btn-primary-footer {
+    display: inline-block;
+    background-color: #ffffff; /* 背景が赤になったので、ボタンは引き立つ白に変更 */
+    color: #C11E21 !important;  /* ボタンの文字色をご指定の赤に変更 */
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-primary-footer:hover {
+    background-color: #f5f5f5; /* ホバー時にうっすらグレーに */
+    transform: translateY(-2px);
+}
+
+/* フッターの一番下にあるロゴマーク */
+.footer-logo {
+    display: block;
+    margin: 30px auto 0;
+}
+
+.footer-logo img {
+    width: 140px;
+    height: auto;
+    /* 背景が赤なので、ロゴが綺麗に映えるよう白背景のボックスや透過の調整を適宜行ってください */
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.footer-logo img:hover {
+    opacity: 1;
+}
+
+#introduction {
+    background-color: #C11E21;
+    color: white;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
+    font-weight: bold;
+    background: linear-gradient(#C11E21, #ea5456);
+    
+    /* 初期状態（スマホ向け）：縦並び */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px; /* 上下左右の余白をスマホ用に調整 */
+    gap: 20px;         /* 文字と画像の間の隙間 */
+}
+
+#syoukai {
+    /* 縦並びのときは中央揃え */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.8;
+}
+
+#introduction img {
+    /* スマホ向け：画面幅いっぱいに収まるように調整 */
+    width: 100%;
+    max-width: 500px; /* 大きくなりすぎないように上限を設定 */
+    height: auto;
+    padding: 0; /* スマホでの大きなパディングをリセット */
+}
+
+/* -------------------------------------------
+   PC・タブレット向けのスタイル（画面幅が768px以上のとき）
+------------------------------------------- */
+@media (min-width: 768px) {
+    #introduction {
+        flex-direction: row; /* 横並びに戻す */
+        justify-content: space-between;
+        padding-left: 50px;
+        padding-right: 50px;
+        text-align: left; /* PCでは左寄せが見やすい */
+    }
+
+    #syoukai {
+        text-align: center;
+        place-items: center;
+    }
+
+    #introduction img {
+        width: 45%; /* PCでは全体の45%の幅に */
+        max-width: none;
+        padding: 40px; /* PC用のおしゃれな余白 */
+    }
+}
+
+/* --- 全体の基本設定 --- */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- ヘッダー：最初のデザインと統一 --- */
+header {
+    background-color: #C11E21;
+    color: white;
+    background: linear-gradient(#C11E21, #ea5456);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* --- 見出し（H2）のデザイン --- */
+section h2 {
+    color: #C11E21;
+    font-size: 1.5rem;
+    border-left: 5px solid #C11E21;
+    padding-left: 12px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* --- 概要：3つのカード（グリッド） --- */
+.grid-info {
+    display: flex;
+    flex-direction: column; /* スマホでは縦並び */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.info-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex: 1; /* 横並び時に均等幅にする */
+}
+
+.info-card h3 {
+    color: #ea5456;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.info-card p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+/* --- 紹介文のパラグラフ --- */
+#shiunkai21 {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    margin: 30px 0;
+    border-top: 4px solid #C11E21;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* --- タイムライン（歴史・沿革） --- */
+.timeline {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column; /* スマホでは縦並び */
+    padding: 15px 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-item .time {
+    font-weight: bold;
+    color: #C11E21;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    min-width: 90px; /* PC時に幅を揃える用 */
+}
+
+.timeline-item .desc {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* -------------------------------------------
+   PC・タブレット向けのスタイル（画面幅が768px以上のとき）
+------------------------------------------- */
+@media (min-width: 768px) {
+    header {
+        padding: 60px 20px;
+    }
+    
+    header h1 {
+        font-size: 2.3rem;
+    }
+
+    /* 3つのカードを横並びに */
+    .grid-info {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    /* タイムラインを「左に年、右に説明」の横並びに */
+    .timeline-item {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .timeline-item .time {
+        margin-bottom: 0;
+    }
+}
+/* --- ヘッダー：背景を白、文字を赤・黒ベースに修正 --- */
+header {
+    background: #ffffff;          /* 背景を白に */
+    color: #333333;               /* 全体の文字色を濃いグレー（黒）に */
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 3px solid #C11E21; /* 下部に志雲会カラーの赤いラインを入れて引き締める */
+}
+
+header h1 {
+    color: #C11E21;               /* タイトルを伝統の赤に */
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1rem;
+    margin: 0;
+    color: #666666;               /* サブタイトルを上品な薄いグレーに */
+}
+
+/* -------------------------------------------
+   PC・タブレット向けのスタイル（画面幅が768px以上のとき）
+------------------------------------------- */
+@media (min-width: 768px) {
+    header {
+        padding: 60px 20px;
+    }
+    
+    header h1 {
+        font-size: 2.3rem;
+    }
+    
+    /* ※ grid-info や timeline のPC設定は前のコードのままでOKです */
+}
