@@ -77,6 +77,9 @@ header {
     white-space: nowrap;
     color: #555555;
     transition: color 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
 }
 
 .nav-menu a:hover {
@@ -464,16 +467,6 @@ footer p {
     width: 28px;
     height: 28px;
     object-fit: contain;
-}
-
-.nav-menu a {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 8px;
-
-    font-weight: bold;
-
-    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
 }
 
 .nav-menu a:hover {
@@ -1036,3 +1029,121 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+/* =========================================================
+   フッター全体の完全中央揃え・美化スタイル
+   ========================================================= */
+   footer {
+    background: #333333;
+    color: #ffffff;
+    padding: 50px 20px;
+    margin-top: 60px;
+    
+    /* 縦方向にすべての要素を中央に並べる設定 */
+    display: block; 
+    text-align: center;
+}
+
+/* SNSブロック */
+#SNS {
+    margin-bottom: 35px;
+}
+
+.sns-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #fcfcfc;
+}
+
+/* SNSアイコンの並び */
+.sns-links {
+    display: table; /* 横並び中央揃えのための安全な構造 */
+    margin: 0 auto;
+}
+
+.sns-links a {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 15px; /* アイコン同士の間隔を広げる */
+    transition: transform 0.2s;
+}
+
+.sns-links a:hover {
+    transform: scale(1.15); /* ホバー時に少し大きくして躍動感を出す */
+}
+
+.sns-links img {
+    width: 36px;  /* アイコンのサイズを少し大きめに統一 */
+    height: 36px;
+    object-fit: contain;
+    display: block;
+}
+
+/* フッターの中央・下部コンテンツ */
+.footer-bottom {
+    margin: 0 auto 30px;
+    max-width: 600px;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+/* ページ上部へ戻るボタン */
+.btn-primary-footer {
+    display: inline-block;
+    background-color: var(--color-primary, #a71d2a);
+    color: #ffffff !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-primary-footer:hover {
+    background-color: var(--color-primary-dark, #75101a);
+    transform: translateY(-2px);
+}
+
+/* フッターの一番下にあるロゴマーク */
+.footer-logo {
+    display: block;
+    margin: 30px auto 0;
+}
+
+.footer-logo img {
+    width: 140px; /* フッターに合わせた上品なサイズに固定 */
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-logo img:hover {
+    opacity: 1;
+}
+
+/* =========================================================
+   スクロールでふわっと浮かび上がるアニメーション
+   ========================================================= */
+
+/* 浮かび上がらせたい要素に共通でつける初期状態 */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px); /* 最初は40px下に下げておく */
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+/* 画面内に入ったときにJavaScriptでこのクラスを付与して「ポン」と動かす */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* 元の位置に戻る */
+}
+

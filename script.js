@@ -83,3 +83,28 @@ const navMenu = document.querySelector('.nav-menu');
 menuBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
+
+/* =========================================================
+   スクロール連動型アニメーション（Intersection Observer）
+   ========================================================= */
+   document.addEventListener("DOMContentLoaded", () => {
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 画面内に入ったら active クラスをつけて動かす
+                entry.target.classList.add("active");
+                // 一度表示されたら監視を解除（何度もパタパタ動かさない場合）
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null, // ブラウザの画面全体を基準にする
+        rootMargin: "0px 0px -15% 0px", // 画面の下側から15%入ったところで発動
+        threshold: 0 // 要素が1pxでも入ったら反応
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+});
+
