@@ -20,7 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border:dotted;
+    border:dotte;
 }
 
 body {
@@ -1679,4 +1679,199 @@ header p {
     }
     
     /* ※ grid-info や timeline のPC設定は前のコードのままでOKです */
+}
+
+.faq {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.faq h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 50px;
+}
+
+.faq-item {
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.question,
+.answer {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+.qa {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eef0ff;
+    color: #5b5cff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.question h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.answer p {
+    margin: 0;
+    color: #666;
+    line-height: 1.8;
+}
+
+.faq-link {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* FAQセクション全体 */
+.faq {
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 60px 70px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+/* タイトル */
+.faq h2 {
+    text-align: center;
+    color: #b61f29;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+}
+
+/* タイトル下線 */
+.faq h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: #b61f29;
+    margin: 18px auto 0;
+}
+
+/* タイトル周りの線 */
+.faq-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.faq-header::before,
+.faq-header::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(182,31,41,0.3);
+}
+
+/* FAQ1項目 */
+.faq-item {
+    padding: 35px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Q・A共通 */
+.qa-row {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+/* QとAの丸 */
+.qa-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #f8f0f1;
+    color: #b61f29;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* 質問 */
+.question {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+}
+
+/* 回答 */
+.answer {
+    margin-top: 18px;
+    font-size: 1.15rem;
+    line-height: 2;
+    color: #666;
+}
+
+/* ボタンエリア */
+.faq-btn-area {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* よくある質問一覧へ */
+.faq-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-width: 320px;
+    padding: 18px 40px;
+    background: linear-gradient(
+        135deg,
+        #b61f29,
+        #cf2f3a
+    );
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(182,31,41,0.25);
+}
+
+/* 矢印 */
+.faq-btn::after {
+    content: "→";
+    font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+/* ホバー */
+.faq-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(182,31,41,0.35);
+}
+
+.faq-btn:hover::after {
+    transform: translateX(5px);
 }
