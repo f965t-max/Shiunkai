@@ -20,7 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border:dotte;
+    border:dotted;
 }
 
 body {
@@ -1517,7 +1517,7 @@ header {
     color: white;
     background: linear-gradient(#C11E21, #ea5456);
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 10px;
 }
 
 header h1 {
@@ -1671,7 +1671,7 @@ header p {
 ------------------------------------------- */
 @media (min-width: 768px) {
     header {
-        padding: 60px 20px;
+        padding: 6px 10px;
     }
     
     header h1 {
