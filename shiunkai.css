@@ -20,7 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border:dotte;
+    border:dottd;
 }
 
 body {
@@ -48,6 +48,16 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: #C11E21;
+    color: white;
+    background: linear-gradient(#C11E21, #ea5456);
+    text-align: center;
+    padding: 30px 10px;
+    background: #ffffff;          /* 背景を白に */
+    color: #333333;               /* 全体の文字色を濃いグレー（黒）に */
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 3px solid #C11E21; /* 下部に志雲会カラーの赤いラインを入れて引き締める */
 }
 
 #nav {
@@ -190,7 +200,10 @@ main a:visited {
     height: 48px;
     margin: 0;
     box-shadow: none;
+    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+    cursor: pointer;
 }
+
 
 /* ---- ボタン ---- */
 .btn {
@@ -236,6 +249,19 @@ footer {
     color: #ffffff;
     padding: 40px 20px;
     margin-top: 80px;
+    background: #333333;
+    color: #ffffff;
+    padding: 50px 20px;
+    margin-top: 60px;
+    
+    /* 縦方向にすべての要素を中央に並べる設定 */
+    display: block; 
+    text-align: center;
+    background: #C11E21; /* 背景色をご指定の #C11E21 に変更 */
+    color: #ffffff;      /* 文字色を白に固定 */
+    padding: 50px 20px;
+    margin-top: 60px;
+    text-align: center;
 }
 
 footer section {
@@ -413,16 +439,6 @@ footer p {
 .back-home {
     text-align: center;
     margin: 50px 0 20px;
-}
-
-.sns-links img {
-    width: 48px;
-    height: 48px;
-    margin: 0;
-    box-shadow: none;
-
-    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
-    cursor: pointer;
 }
 
 .sns-links img:hover {
@@ -1033,17 +1049,6 @@ body {
 /* =========================================================
    フッター全体の完全中央揃え・美化スタイル
    ========================================================= */
-   footer {
-    background: #333333;
-    color: #ffffff;
-    padding: 50px 20px;
-    margin-top: 60px;
-    
-    /* 縦方向にすべての要素を中央に並べる設定 */
-    display: block; 
-    text-align: center;
-}
-
 /* SNSブロック */
 #SNS {
     margin-bottom: 35px;
@@ -1343,14 +1348,6 @@ body {
 /* =========================================================
    フッター全体の背景色変更・中央揃えスタイル
    ========================================================= */
-   footer {
-    background: #C11E21; /* 背景色をご指定の #C11E21 に変更 */
-    color: #ffffff;      /* 文字色を白に固定 */
-    padding: 50px 20px;
-    margin-top: 60px;
-    text-align: center;
-}
-
 /* SNSブロック */
 #SNS {
     margin-bottom: 35px;
@@ -1512,13 +1509,6 @@ body {
 }
 
 /* --- ヘッダー：最初のデザインと統一 --- */
-header {
-    background-color: #C11E21;
-    color: white;
-    background: linear-gradient(#C11E21, #ea5456);
-    text-align: center;
-    padding: 30px 10px;
-}
 
 header h1 {
     font-size: 1.8rem;
@@ -1645,13 +1635,6 @@ section h2 {
     }
 }
 /* --- ヘッダー：背景を白、文字を赤・黒ベースに修正 --- */
-header {
-    background: #ffffff;          /* 背景を白に */
-    color: #333333;               /* 全体の文字色を濃いグレー（黒）に */
-    text-align: center;
-    padding: 40px 20px;
-    border-bottom: 3px solid #C11E21; /* 下部に志雲会カラーの赤いラインを入れて引き締める */
-}
 
 header h1 {
     color: #C11E21;               /* タイトルを伝統の赤に */
@@ -1876,3 +1859,68 @@ header p {
     transform: translateX(5px);
 }
 
+.sns-link:hover {
+    background-color: #c7241d !important; /* ロゴに合わせた赤（実際のカラーコードに変えてください） */
+    border-radius: 8px;                    /* LINEのアイコンのような角丸 */
+  }
+  
+  /* ホバー時に中にあるアイコン（SVGなど）の色を白にする */
+  .sns-link:hover svg,
+  .sns-link:hover i {
+    fill: #ffffff !important;   /* SVGの場合 */
+    color: #ffffff !important;  /* フォントアイコンの場合 */
+  }
+  /* ボタン自体のサイズと線の配置準備 */
+.menu-toggle {
+    position: relative;
+    width: 30px;  /* ボタンの幅 */
+    height: 24px; /* ボタンの高さ */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* 3本線の共通スタイル */
+.menu-toggle span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;          /* 線の太さ */
+    background-color: #333; /* 線の色（ロゴの赤などにする場合は変更してください） */
+    border-radius: 2px;
+    transition: all 0.3s ease; /* アニメーションの速度 */
+}
+
+/* 1本目、2本目、3本目の初期位置（上からの高さ） */
+.menu-toggle span:nth-child(1) {
+    top: 0;
+}
+.menu-toggle span:nth-child(2) {
+    top: 11px; /* 中央 */
+}
+.menu-toggle span:nth-child(3) {
+    top: 22px;
+}
+
+/* ==========================================
+   ボタンが押されて「.is-active」クラスがついた時の動き
+   ========================================== */
+
+/* 1本目を右下がりに回転 */
+.menu-toggle.is-active span:nth-child(1) {
+    top: 11px;
+    transform: rotate(45deg);
+}
+
+/* 2本目を消す */
+.menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+/* 3本目を右上がりに回転 */
+.menu-toggle.is-active span:nth-child(3) {
+    top: 11px;
+    transform: rotate(-45deg);
+}

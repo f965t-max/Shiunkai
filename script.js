@@ -107,3 +107,26 @@ menuBtn.addEventListener('click', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 });
+
+const swiper = new Swiper('.swiper', {
+    // ❌ 以下の立体エフェクトの設定があれば、削除するかコメントアウトします
+    // effect: 'coverflow',
+    // coverflowEffect: { ... },
+  
+    // ⭕ 代わりに、通常の横スライド（初期値）を指定します
+    effect: 'slide', 
+    
+    // 1画面に表示する枚数（必要に応じて調整）
+    slidesPerView: 1, 
+    spaceBetween: 20, // カード間の隙間（px）
+    
+    // ループさせる場合
+    loop: true,
+    
+    // 矢印ボタンの設定
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+ 
