@@ -272,9 +272,7 @@ footer p {
 /* ---- 3D カルーセル ---- */
 .carousel-viewport {
     position: relative;
-    max-width: 800px;
     width: 100%;
-    height: 480px;            /* ★全体の高さを少し広げてゆとりを持たせます */
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -293,40 +291,50 @@ footer p {
 
 .carousel-card {
     display: block;
-    flex: 0 0 100%;           /* 1画面に1枚ずつ表示（viewportの幅いっぱいに広がる） */
+    flex: 0 0 100%;           /* 1画面に1枚表示 */
     box-sizing: border-box;
-    padding: 15px;
+    padding: 10px 20px;
     text-decoration: none;
-    color: #333;
-    height: 380px;
-    transition: transform 0.3s ease;
-
-    background: #fff;
-    border-radius: 8px; /* 角丸 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影 */
-    overflow: hidden; /* **重要: これではみ出した画像を隠す** */
-    display: flex;
-    flex-direction: column; /* 縦に並べる */
-    transition: transform 0.3s ease;
+    height: 420px;
 
     transform: none !important;
 }
 
+.card-1 .card-inner { background-image: url("概要・合格実績・歴史.png"); }
+.card-2 .card-inner { background-image: url("活動内容.jpg"); }
+.card-3 .card-inner { background-image: url("専用研究室について.jpg"); }
+.card-4 .card-inner { background-image: url("2026年度入会選考.jpg"); }
 
+.card-inner::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 40%; /* 下側40%だけをじんわり暗くする */
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+    border-radius: 0 0 12px 12px;
+    z-index: -1;
+}
 
 /* カードの内側のスタイル（調整用） */
 .card-inner {
-    background: #fff;
+    /* 背景画像の表示設定（はみ出さず、中央に、綺麗に引き伸ばす） */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 30px 20px;       /* 文字の余白を少し広めに */
     box-sizing: border-box;
-    height: 100%;             /* 420pxいっぱいに広げる */
+    height: 100%;
     
-    /* ★ここが重要：中身を縦に綺麗に並べ、はみ出しを防ぐ不沈設定 */
     display: flex;
     flex-direction: column;
-    overflow: hidden;         /* 万が一の突き抜けを防止 */
+    justify-content: flex-end; /* ★文字を写真の下側に寄せる（お好みで中央でもOK） */
+    
+    /* ★超重要：写真の上に半透明の黒を重ねて、白い文字を見やすくする（グラデーション） */
+    position: relative;
+    z-index: 1;
 }
 
 .card-inner img {
@@ -335,6 +343,7 @@ footer p {
     object-fit: cover;        /* 縦横比を維持したまま、領域に合わせて綺麗に中央トリミング */
     border-radius: 6px;
     min-height: 0;            /* ★Flexbox内で画像が親を突き破るバグを確実に防ぐ魔法の1行 */
+    display: none;
 }
 
 .card-inner {
@@ -361,19 +370,19 @@ footer p {
 
 .card-inner h3 {
     margin: 0 0 10px 0;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     text-align: center;
-    color: #b22222;           /* 文字色（お好みに合わせて） */
-    flex-shrink: 0;           /* 絶対に潰れないように固定 */
+    color: #ffffff;           /* ★白色に変更 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 文字に軽い影をつけてさらに読みやすく */
 }
 
 .card-inner p {
-    margin: 0 0 15px 0;
+    margin: 0;
     font-size: 0.95rem;
-    color: #555;
+    color: #e0e0e0;           /* ★明るいグレー（白に近い）に変更 */
     text-align: center;
     line-height: 1.5;
-    flex-shrink: 0;           /* ★これでテキストが消えるのを防ぎます！ */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .card-inner img {
@@ -1881,6 +1890,26 @@ header p {
     background: #fff;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    /* ★cover から contain に変更：全体が収まるように自動縮小 */
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* ★写真の外側の余白の色（今回は黒ですが、#fffで白にしてもOK） */
+    background-color: #222; 
+
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+    box-sizing: border-box;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
 }
 
 .card-inner img {
