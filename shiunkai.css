@@ -20,7 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border:dottd;
+    border:dotte;
 }
 
 body {
@@ -245,23 +245,13 @@ main a:visited {
 
 /* ---- フッター ---- */
 footer {
-    background-color: #222222;
     color: #ffffff;
-    padding: 40px 20px;
-    margin-top: 80px;
-    background: #333333;
-    color: #ffffff;
-    padding: 50px 20px;
-    margin-top: 60px;
-    
     /* 縦方向にすべての要素を中央に並べる設定 */
     display: block; 
     text-align: center;
     background: #C11E21; /* 背景色をご指定の #C11E21 に変更 */
-    color: #ffffff;      /* 文字色を白に固定 */
-    padding: 50px 20px;
-    margin-top: 60px;
-    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 footer section {
@@ -281,32 +271,70 @@ footer p {
 
 /* ---- 3D カルーセル ---- */
 .carousel-viewport {
+    position: relative;
+    max-width: 800px;
     width: 100%;
-    height: 500px;
-    perspective: 1200px;
+    height: 480px;            /* ★全体の高さを少し広げてゆとりを持たせます */
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    margin: 50px 0;
+    overflow: hidden;
+    background: transparent;
 }
 
 .carousel-stage {
-    width: 280px;
-    height: 380px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
-    touch-action: pan-y; /* 縦スクロールは残し、横スワイプを拾う */
+    display: flex;
+    width: 100%;
+    height: 420px;            /* ★カードの高さに合わせます */
+    touch-action: pan-y;
+    transition: transform 0.4s ease-in-out;
 }
 
 .carousel-card {
-    position: absolute;
-    width: 280px;
-    height: 380px;
-    left: 0;
-    top: 0;
+    display: block;
+    flex: 0 0 100%;           /* 1画面に1枚ずつ表示（viewportの幅いっぱいに広がる） */
     box-sizing: border-box;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    height: 380px;
+    transition: transform 0.3s ease;
+
+    background: #fff;
+    border-radius: 8px; /* 角丸 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影 */
+    overflow: hidden; /* **重要: これではみ出した画像を隠す** */
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    transition: transform 0.3s ease;
+
+    transform: none !important;
+}
+
+
+
+/* カードの内側のスタイル（調整用） */
+.card-inner {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;             /* 420pxいっぱいに広げる */
+    
+    /* ★ここが重要：中身を縦に綺麗に並べ、はみ出しを防ぐ不沈設定 */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;         /* 万が一の突き抜けを防止 */
+}
+
+.card-inner img {
+    width: 100%;
+    height: 100%;             /* 親の余った高さいっぱいに広げる */
+    object-fit: cover;        /* 縦横比を維持したまま、領域に合わせて綺麗に中央トリミング */
+    border-radius: 6px;
+    min-height: 0;            /* ★Flexbox内で画像が親を突き破るバグを確実に防ぐ魔法の1行 */
 }
 
 .card-inner {
@@ -332,20 +360,20 @@ footer p {
 }
 
 .card-inner h3 {
-    color: var(--color-primary);
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #efefef;
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    text-align: center;
+    color: #b22222;           /* 文字色（お好みに合わせて） */
+    flex-shrink: 0;           /* 絶対に潰れないように固定 */
 }
 
 .card-inner p {
-    font-size: 0.85rem;
-    color: var(--color-text);
+    margin: 0 0 15px 0;
+    font-size: 0.95rem;
+    color: #555;
+    text-align: center;
     line-height: 1.5;
-    height: 70px;
-    overflow: hidden;
+    flex-shrink: 0;           /* ★これでテキストが消えるのを防ぎます！ */
 }
 
 .card-inner img {
@@ -683,23 +711,15 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-
     min-width: 220px;
-
     background: white;
     border-radius: 8px;
-
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-
     list-style: none;
-
     opacity: 0;
     visibility: hidden;
-
     transform: translateY(10px);
-
     transition: all 0.3s ease;
-
     z-index: 999;
 }
 
@@ -738,24 +758,17 @@ body {
 
 .feature-box {
     width: 220px;
-
     background: white;
-
     border-radius: 12px;
     padding: 25px 20px;
-
     text-align: center;
-
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
     border-top: 5px solid var(--color-primary);
-
     transition: all 0.3s ease;
 }
 
 .feature-box:hover {
     transform: translateY(-5px);
-
     box-shadow: 0 10px 25px rgba(167,29,42,0.15);
 }
 
@@ -1094,7 +1107,7 @@ body {
 
 .footer-bottom p {
     font-size: 0.9rem;
-    color: #cccccc;
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -1125,8 +1138,8 @@ body {
 .footer-logo img {
     width: 140px; /* フッターに合わせた上品なサイズに固定 */
     height: auto;
-    opacity: 0.8;
     transition: opacity 0.2s;
+    opacity: 0.8;
 }
 
 .footer-logo img:hover {
@@ -1156,21 +1169,6 @@ body {
    SMART HORIZONTAL CAROUSEL (フラット・横スクロールカルーセル)
    ========================================================================== */
 
-/* 1. 外枠：はみ出たカードを横スクロールさせ、スナップさせる設定 */
-.carousel-viewport {
-    width: 100%;
-    overflow-x: auto;          /* 横スクロールを許可 */
-    overflow-y: hidden;        /* 縦方向のはみ出しは隠す */
-    padding: 20px 10px 30px;   /* カードの影が綺麗に見えるように下部余白を確保 */
-    background: transparent;
-    
-    /* スマホで指を離してもしばらく滑らかに慣性スクロールする設定 */
-    -webkit-overflow-scrolling: touch; 
-    
-    /* スナップ機能：スクロールを止めたとき、カードがピタッと綺麗に中央で止まる */
-    scroll-snap-type: x mandatory; 
-}
-
 /* PC等で見たときのスクロールバーを細くスタイリッシュに装飾 */
 .carousel-viewport::-webkit-scrollbar {
     height: 6px;
@@ -1181,23 +1179,6 @@ body {
 }
 .carousel-viewport::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.02);
-}
-
-/* 2. ステージ：カードを一列に折り返さず横並びにする */
-.carousel-stage {
-    display: flex;
-    gap: 20px;                 /* カード同士の間隔 */
-    width: max-content;        /* 中身のカードの総横幅に自動で合わせる */
-    padding: 0 10px;
-}
-
-/* 3. 各カードの幅と止まる位置（スナップ）の設定 */
-.carousel-card {
-    display: block;
-    width: 290px;              /* スマホ・PC問わず美しく収まる最適なカード幅 */
-    flex-shrink: 0;            /* 画面幅に合わせてカードが潰れるのを防ぐ */
-    scroll-snap-align: center; /* スクロールが止まる位置をカードの中央に固定 */
-    transition: transform 0.3s ease;
 }
 
 /* 4. カードの内側デザイン：上品で清潔感のあるミニマルスタイル */
@@ -1214,25 +1195,12 @@ body {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.card-inner h3 {
-    font-size: 1.15rem;
-    color: var(--color-primary, #a71d2a);
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.card-inner p {
-    font-size: 0.85rem;
-    color: #666666;
-    margin-bottom: 16px;
-    line-height: 1.5;
-}
 
 .card-inner img {
-    width: 100%;
-    height: 155px;
-    object-fit: cover;         /* 画像の比率を崩さずに長方形に切り抜く */
-    border-radius: 8px;
+    width: 100%; /* 横幅をカードに合わせる */
+    height: auto; /* 高さは自動調整 */
+    object-fit: contain; /* **重要: 画像の縦横比を保ちつつ、カード内に収める** */
+    display: block; /* 画像の下にできる隙間をなくす */
 }
 
 /* 5. ホバー時（PC）のマイルドで高級感のある浮き上がり演出 */
@@ -1396,7 +1364,6 @@ body {
 .footer-bottom p {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.85); /* 著作権テキストを少しだけ透過させて上品に */
-    margin-bottom: 20px;
 }
 
 /* ページ上部へ戻るボタン */
@@ -1415,24 +1382,6 @@ body {
 .btn-primary-footer:hover {
     background-color: #f5f5f5; /* ホバー時にうっすらグレーに */
     transform: translateY(-2px);
-}
-
-/* フッターの一番下にあるロゴマーク */
-.footer-logo {
-    display: block;
-    margin: 30px auto 0;
-}
-
-.footer-logo img {
-    width: 140px;
-    height: auto;
-    /* 背景が赤なので、ロゴが綺麗に映えるよう白背景のボックスや透過の調整を適宜行ってください */
-    opacity: 0.9;
-    transition: opacity 0.2s;
-}
-
-.footer-logo img:hover {
-    opacity: 1;
 }
 
 #introduction {
@@ -1923,4 +1872,55 @@ header p {
 .menu-toggle.is-active span:nth-child(3) {
     top: 11px;
     transform: rotate(-45deg);
+}
+
+.card-inner {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-inner img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* 前へ・次へボタンの共通スタイル */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+#footercontent{
+    display: flex;
+    justify-content: space-around;
+}
+
+#footercontent p{
+    text-align: left;
 }

@@ -1,7 +1,6 @@
 /* =========================================================
    志雲会 共通スクリプト  script.js
-   3D カルーセル（自動回転 / ボタン / タッチスワイプ）
-   ※ カルーセルが無いページでは何もしない
+   2D カルーセル（自動回転 / ボタン / タッチスワイプ）
    ========================================================= */
 
    document.addEventListener("DOMContentLoaded", () => {
@@ -9,28 +8,46 @@
     const viewport = document.querySelector(".carousel-viewport");
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
+    const cards = document.querySelectorAll(".carousel-card");
 
-    // カルーセルが無いページ（katsudou など）では処理を止める
-    if (!stage || !viewport) return;
+    // カルーセルが無いページ（katsudou など）では処理をスキップ
+    if (!stage || !viewport || cards.length === 0) return;
 
-    const STEP = 90;        // 1 枚分の回転角
     const INTERVAL = 4000;  // 自動回転の間隔(ms)
-    let angle = 0;
+    let currentIndex = 0;
+    const totalCards = cards.length;
     let autoTimer = null;
 
-    const render = () => {
-        stage.style.transform = `rotateY(${angle}deg)`;
+    // ─── スライド位置を更新する関数 ───
+    const updateCarousel = () => {
+        // カード1枚分の幅（100%）× インデックス分だけ左にずらす
+        const offset = -currentIndex * 100;
+        stage.style.transform = `translateX(${offset}%)`;
     };
 
-    // dir: -1 = 次へ（時計回り） / +1 = 前へ
-    const rotate = (dir) => {
-        angle += dir * STEP;
-        render();
+    // ─── インデックス操作 ───
+    const nextSlide = () => {
+        if (currentIndex < totalCards - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // 最後のカードなら最初に戻る
+        }
+        updateCarousel();
     };
 
+    const prevSlide = () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalCards - 1; // 最初のカードなら最後に行く
+        }
+        updateCarousel();
+    };
+
+    // ─── 自動再生の制御 ───
     const startAuto = () => {
         stopAuto();
-        autoTimer = setInterval(() => rotate(-1), INTERVAL);
+        autoTimer = setInterval(nextSlide, INTERVAL);
     };
 
     const stopAuto = () => {
@@ -39,10 +56,17 @@
     };
 
     // ─── ボタン操作 ───
-    nextBtn?.addEventListener("click", () => { rotate(-1); startAuto(); });
-    prevBtn?.addEventListener("click", () => { rotate(1); startAuto(); });
+    nextBtn?.addEventListener("click", () => {
+        nextSlide();
+        startAuto(); // クリックされたらタイマーをリセット
+    });
 
-    // ─── PC: ホバー中は停止 ───
+    prevBtn?.addEventListener("click", () => {
+        prevSlide();
+        startAuto(); // クリックされたらタイマーをリセット
+    });
+
+    // ─── PC: ホバー中は自動再生を停止 ───
     viewport.addEventListener("mouseenter", stopAuto);
     viewport.addEventListener("mouseleave", startAuto);
 
@@ -68,7 +92,11 @@
 
         // 横方向の移動が縦より大きい＝意図的な横スワイプのときだけ反応
         if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > SWIPE_THRESHOLD) {
-            rotate(dx < 0 ? -1 : 1); // 左へスワイプ→次 / 右へスワイプ→前
+            if (dx < 0) {
+                nextSlide(); // 左へスワイプ → 次へ
+            } else {
+                prevSlide(); // 右へスワイプ → 前へ
+            }
         }
         startAuto();
     }, { passive: true });
@@ -77,56 +105,38 @@
     startAuto();
 });
 
+
+/* =========================================================
+   スマホ用ナビゲーションメニュー
+   ========================================================= */
 const menuBtn = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-menuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+if (menuBtn && navMenu) {
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+}
+
 
 /* =========================================================
    スクロール連動型アニメーション（Intersection Observer）
    ========================================================= */
-   document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const revealElements = document.querySelectorAll(".reveal");
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // 画面内に入ったら active クラスをつけて動かす
                 entry.target.classList.add("active");
-                // 一度表示されたら監視を解除（何度もパタパタ動かさない場合）
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // 一度表示されたら監視を解除
             }
         });
     }, {
-        root: null, // ブラウザの画面全体を基準にする
+        root: null,
         rootMargin: "0px 0px -15% 0px", // 画面の下側から15%入ったところで発動
-        threshold: 0 // 要素が1pxでも入ったら反応
+        threshold: 0
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
 });
-
-const swiper = new Swiper('.swiper', {
-    // ❌ 以下の立体エフェクトの設定があれば、削除するかコメントアウトします
-    // effect: 'coverflow',
-    // coverflowEffect: { ... },
-  
-    // ⭕ 代わりに、通常の横スライド（初期値）を指定します
-    effect: 'slide', 
-    
-    // 1画面に表示する枚数（必要に応じて調整）
-    slidesPerView: 1, 
-    spaceBetween: 20, // カード間の隙間（px）
-    
-    // ループさせる場合
-    loop: true,
-    
-    // 矢印ボタンの設定
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  });
- 
