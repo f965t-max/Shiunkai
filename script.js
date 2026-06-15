@@ -140,3 +140,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 });
+
+
+document.getElementById('back-to-top').addEventListener('click', function(e) {
+    e.preventDefault(); // href="#" による瞬時の移動をキャンセル
+    
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // スムーズにスクロールさせる
+    });
+});
