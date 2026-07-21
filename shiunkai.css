@@ -10,7 +10,6 @@
 }
 
 
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -234,7 +233,7 @@ main > section:hover {
     margin: 20px auto;
 }
 
-/* 隕句�縺� */
+
 main h2 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -263,13 +262,13 @@ main a:visited {
     text-decoration: none;
 }
 
-/* 繝壹�繧ｸ蜀�い繝ｳ繧ｫ繝ｼ縺後�繝�ム繝ｼ縺ｫ髫�繧後↑縺�ｈ縺�↓ */
+
 #senkou,
 #kenkyu {
     scroll-margin-top: 100px;
 }
 
-/* 邏ｹ莉区枚繝懊ャ繧ｯ繧ｹ */
+
 #shiunkai21 {
     max-width: 900px;
     margin: 50px auto;
@@ -290,7 +289,7 @@ main a:visited {
     box-shadow: 0 10px 30px rgba(167, 29, 42, 0.12);
 }
 
-/* 繧ｭ繝｣繝�メ繧ｳ繝斐� */
+
 .shiunkai-catch {
     text-align: center;
     font-size: 1.8rem;
@@ -312,7 +311,7 @@ main a:visited {
     border-radius: 999px;
 }
 
-/* 迚ｹ蠕ｴ繝懊ャ繧ｯ繧ｹ */
+
 .shiunkai-features {
     display: flex;
     justify-content: center;
@@ -322,7 +321,6 @@ main a:visited {
 }
 
 .feature-box {
-    width: 220px;
     background: white;
     border-radius: 12px;
     padding: 25px 20px;
@@ -482,7 +480,7 @@ main a:visited {
     font-size: 1.05rem;
 }
 
-/* 繧ｿ繧､繝�繝ｩ繧､繝ｳ */
+
 .timeline {
     background-color: white;
     border-radius: 8px;
@@ -512,7 +510,7 @@ main a:visited {
     color: #444;
 }
 
-/* 繧ｻ繧ｯ繧ｷ繝ｧ繝ｳ隕句�縺� */
+
 section h2 {
     color: #C11E21;
     font-size: 1.5rem;
@@ -656,10 +654,6 @@ section h2 {
 
 
 
-
-/* ================================================================
-   6. 繝懊ち繝ｳ
-   ================================================================ */
 .btn {
     display: inline-block;
     padding: 10px 24px;
@@ -708,9 +702,7 @@ section h2 {
 }
 
 
-/* ================================================================
-   7. SNS
-   ================================================================ */
+
 .sns-heading {
     text-align: center;
     font-weight: bold;
@@ -764,9 +756,7 @@ section h2 {
 }
 
 
-/* ================================================================
-   8. 繧ｫ繝ｫ繝ｼ繧ｻ繝ｫ
-   ================================================================ */
+
    .carousel-viewport {
     position: relative;
     width: 100vw;              /* ビューポートいっぱい */
@@ -799,14 +789,12 @@ section h2 {
 }
 
 .carousel-card {
-    display: block;
     flex: 0 0 100%;
     box-sizing: border-box;
     padding: 10px 20px;
     text-decoration: none;
     height: 420px;
     transform: none !important;
-
     height: 700px;
 }
 
@@ -819,7 +807,6 @@ section h2 {
     border-color: rgba(167, 29, 42, 0.2);
 }
 
-/* 繧ｫ繝ｼ繝牙�蛛ｴ */
 .card-inner {
     background: #222;
     background-size: contain;
@@ -913,9 +900,6 @@ section h2 {
 .next-btn { right: 20px; }
 
 
-/* ================================================================
-   9. 3D 繧ｭ繝･繝ｼ繝悶ぐ繝｣繝ｩ繝ｪ繝ｼ
-   ================================================================ */
 .cube-gallery {
     width: 100%;
     height: 450px;
@@ -964,9 +948,6 @@ section h2 {
 }
 
 
-/* ================================================================
-   10. 蜈･莨夐∈閠�
-   ================================================================ */
 #senkou {
     background: #ffffff;
     padding: 40px 20px;
@@ -1080,7 +1061,7 @@ section h2 {
     flex-shrink: 0;
 }
 
-/* LINE 繝懊ち繝ｳ */
+
 .line-cta {
     text-align: center;
     border-top: 1px dashed #e2e8f0;
@@ -1127,7 +1108,7 @@ section h2 {
     height: auto;
 }
 
-/* 讓ｪ繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ繧ｫ繝ｼ繝会ｼ亥�莨夐∈閠�ｼ� */
+
 .senkou-scroll-viewport {
     width: 100%;
     overflow-x: auto;
@@ -1262,41 +1243,26 @@ section h2 {
     padding: 35px 0;
     border-bottom: 1px solid #e5e5e5;
     background:white;
-
     border-radius:20px;
-
     margin:25px 0;
-
     overflow:hidden;
-
     box-shadow:
         0 10px 30px rgba(0,0,0,.08);
-
     transition:.35s;
-
     padding: 40px;
 }
 
 .qa{
 
     width:45px;
-
     height:45px;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-weight:bold;
-
     color:white;
-
     background:#a71d2a;
-
     flex-shrink:0;
 }
 
@@ -1353,9 +1319,7 @@ section h2 {
 }
 
 
-/* ================================================================
-   12. 繝輔ャ繧ｿ繝ｼ
-   ================================================================ */
+
 footer {
     background: #751624;
     color: #ffffff;
@@ -1481,10 +1445,6 @@ footer p {
     padding: 7px;
 }
 
-
-/* ================================================================
-   13. 繧ｹ繧ｯ繝ｭ繝ｼ繝ｫ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
-   ================================================================ */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -1499,9 +1459,7 @@ footer p {
 }
 
 
-/* ================================================================
-   14. 繝ｬ繧ｹ繝昴Φ繧ｷ繝�
-   ================================================================ */
+
 @media (max-width: 768px) {
     #shiunkai { height: 3.5em; }
 
@@ -1521,16 +1479,106 @@ footer p {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width:600px){
+
     .card,
     #shiunkaitoha,
     #goukaku,
-    main > section {
-        padding: 20px;
+    main > section{
+    
+        padding:30px 18px;
+    
     }
-
-    .carousel-viewport { height: 440px; }
-}
+    
+    /* ロゴ */
+    
+    .shiunkai-logo{
+    
+        width:110px;
+        margin:15px auto 25px;
+        display:block;
+    
+    }
+    
+    /* キャッチコピー */
+    
+    .shiunkai-catch{
+    
+        font-size:2rem;
+        line-height:1.5;
+        font-weight:bold;
+        margin-bottom:35px;
+    
+    }
+    
+    /* カードを2列表示 */
+    
+    .shiunkai-features{
+    
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    
+    }
+    
+    /* 最後のカードだけ中央 */
+    
+    .shiunkai-features .feature-box:last-child{
+    
+        grid-column:1 / 3;
+        max-width:220px;
+        margin:0 auto;
+    
+    }
+    
+    /* カード */
+    
+    .feature-box{
+    
+        padding:22px 15px;
+        border-radius:18px;
+    
+    }
+    
+    /* 数字 */
+    
+    .feature-number{
+    
+        font-size:2rem;
+    
+    }
+    
+    /* 説明 */
+    
+    .feature-box p{
+    
+        font-size:0.95rem;
+        margin-top:10px;
+    
+    }
+    
+    /* ボタン */
+    
+    .detail-btn{
+    
+        margin-top:35px;
+        text-align:center;
+    
+    }
+    
+    .btn-outline{
+    
+        padding:12px 30px;
+    
+    }
+    
+    .carousel-viewport{
+    
+        height:440px;
+    
+    }
+    
+    }
 
 @media (min-width: 768px) {
     header { padding: 6px 10px; }
@@ -1556,3 +1604,112 @@ footer p {
     }
 
 }
+
+.section-card{
+    background:#fff;
+    border-radius:18px;
+    padding:45px;
+    margin:60px auto;
+    max-width:1000px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.08);
+
+    border-top:6px solid #a71d2a;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:2.2rem;
+    color:#75101a;
+    margin-bottom:5px;
+}
+
+.section-title p{
+    color:#888;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+.badge-list{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
+
+    gap:20px;
+
+}
+
+.badge{
+
+    background:white;
+
+    border:2px solid #a71d2a;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    padding:20px;
+
+    transition:.3s;
+
+    font-size:1rem;
+
+}
+
+.badge strong{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#a71d2a;
+
+    font-size:2rem;
+
+}
+
+.badge:hover{
+
+    transform:translateY(-8px);
+
+    background:#a71d2a;
+
+    color:white;
+
+}
+
+.badge:hover strong{
+
+    color:#ffd66b;
+
+}
+.btn-outline{
+
+    padding:15px 35px;
+    
+    border-radius:40px;
+    
+    border:2px solid #a71d2a;
+    
+    color:#a71d2a;
+    
+    transition:.3s;
+    
+    font-weight:bold;
+    
+    }
+    
+    .btn-outline:hover{
+    
+    background:#a71d2a;
+    
+    color:white;
+    
+    }
