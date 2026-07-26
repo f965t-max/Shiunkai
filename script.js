@@ -8,41 +8,81 @@
     const viewport = document.querySelector(".carousel-viewport");
     const prevBtn = document.querySelector(".prev-btn");
     const nextBtn = document.querySelector(".next-btn");
-    const cards = document.querySelectorAll(".carousel-card");
+    const originalCards = Array.from(document.querySelectorAll(".carousel-card"));
 
     // カルーセルが無いページ（katsudou など）では処理をスキップ
-    if (!stage || !viewport || cards.length === 0) return;
+    if (!stage || !viewport || originalCards.length === 0) return;
 
     const INTERVAL = 4000;  // 自動回転の間隔(ms)
-    let currentIndex = 0;
-    const totalCards = cards.length;
+    const totalCards = originalCards.length;
+
+    // 両端にクローンを追加して、ループ時も同方向にスライドし続ける
+    const firstClone = originalCards[0].cloneNode(true);
+    const lastClone = originalCards[totalCards - 1].cloneNode(true);
+    [firstClone, lastClone].forEach((clone) => {
+        clone.removeAttribute("id");
+        clone.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+        clone.setAttribute("aria-hidden", "true");
+        clone.tabIndex = -1;
+    });
+    stage.insertBefore(lastClone, originalCards[0]);
+    stage.appendChild(firstClone);
+
+    let currentIndex = 1; // 先頭の本物カードから開始
+    let isAnimating = false;
     let autoTimer = null;
 
-    // ─── スライド位置を更新する関数 ───
+    const setTransition = (enabled) => {
+        stage.style.transition = enabled ? "" : "none";
+    };
+
+    const getSlideWidth = () => viewport.getBoundingClientRect().width;
+
     const updateCarousel = () => {
-        // カード1枚分の幅（100%）× インデックス分だけ左にずらす
-        const offset = -currentIndex * 100;
-        stage.style.transform = `translateX(${offset}%)`;
+        const slideWidth = getSlideWidth();
+        stage.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+        stage.querySelectorAll(".carousel-card").forEach((card, index) => {
+            card.style.pointerEvents = index === currentIndex ? "auto" : "none";
+        });
     };
 
-    // ─── インデックス操作 ───
-    const nextSlide = () => {
-        if (currentIndex < totalCards - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // 最後のカードなら最初に戻る
+    const resetLoopPosition = () => {
+        if (currentIndex === 0) {
+            setTransition(false);
+            currentIndex = totalCards;
+            updateCarousel();
+            stage.offsetHeight;
+            setTransition(true);
+        } else if (currentIndex === totalCards + 1) {
+            setTransition(false);
+            currentIndex = 1;
+            updateCarousel();
+            stage.offsetHeight;
+            setTransition(true);
         }
+    };
+
+    stage.addEventListener("transitionend", (e) => {
+        if (e.target !== stage || e.propertyName !== "transform") return;
+        isAnimating = false;
+        resetLoopPosition();
+    });
+
+    const moveSlide = (direction) => {
+        if (isAnimating) return;
+        isAnimating = true;
+        currentIndex += direction;
         updateCarousel();
     };
 
-    const prevSlide = () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = totalCards - 1; // 最初のカードなら最後に行く
-        }
-        updateCarousel();
-    };
+    const nextSlide = () => moveSlide(1);
+    const prevSlide = () => moveSlide(-1);
+
+    // 初期位置（アニメーションなし）
+    setTransition(false);
+    updateCarousel();
+    stage.offsetHeight;
+    setTransition(true);
 
     // ─── 自動再生の制御 ───
     const startAuto = () => {
@@ -103,6 +143,7 @@
 
     // ─── 初期起動 ───
     startAuto();
+    window.addEventListener("resize", updateCarousel);
 });
 
 
