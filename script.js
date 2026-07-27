@@ -33,10 +33,10 @@
     let autoTimer = null;
 
     const setTransition = (enabled) => {
-        stage.style.transition = enabled ? "" : "none";
+        stage.style.transition = enabled ? "transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1)" : "none";
     };
 
-    const getSlideWidth = () => viewport.getBoundingClientRect().width;
+    const getSlideWidth = () => Math.round(viewport.getBoundingClientRect().width);
 
     const updateCarousel = () => {
         const slideWidth = getSlideWidth();
@@ -143,7 +143,12 @@
 
     // ─── 初期起動 ───
     startAuto();
-    window.addEventListener("resize", updateCarousel);
+    window.addEventListener("resize", () => {
+        setTransition(false);
+        updateCarousel();
+        stage.offsetHeight;
+        setTransition(true);
+    });
 });
 
 
@@ -156,6 +161,9 @@ const navMenu = document.querySelector('.nav-menu');
 if (menuBtn && navMenu) {
     menuBtn.addEventListener('click', () => {
         navMenu.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+        const expanded = menuBtn.classList.contains('active');
+        menuBtn.setAttribute('aria-expanded', expanded);
     });
 }
 
