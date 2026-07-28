@@ -255,6 +255,7 @@ main > section:hover {
 }
 
 
+
 main h2 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -313,23 +314,31 @@ main a:visited {
 
 .shiunkai-catch {
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: clamp(1.4rem, 4.2vw, 2rem);
+    font-weight: 700;
     color: var(--color-primary);
     margin: 50px auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    gap: 0.35em;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-wrap: balance;
 }
 
 .shiunkai-catch::before,
 .shiunkai-catch::after {
     content: "";
-    width: 120px;
+    width: min(180px, 60%);
     height: 3px;
     background: var(--color-primary);
     border-radius: 999px;
+}
+
+.shiunkai-catch-line {
+    display: block;
+    white-space: nowrap;
 }
 
 
@@ -558,10 +567,10 @@ section h2 {
 
 .organization-name {
     font-family: 'Yuji Syuku', 'HGP行書体', serif;
-    
-    font-size: 3.8rem; /* 看板のような圧倒的な主役感が出るようにさらに大きく */
+        
+    font-size: 4.0rem; /* 看板のような圧倒的な主役感が出るようにさらに大きく */
     font-weight: bold;
-    color: #E6C35C;    /* 高級感のあるゴールド（看板のように青系にする場合は #0047AB なども映えます） */
+    color: #2b6cb0;    /* 青系のアクセントで、見出しとして引き立つように調整 */
     letter-spacing: 0.18em; /* 文字と文字の間隔を広げて品格を出す */
     margin-bottom: 10px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); 
@@ -575,7 +584,7 @@ section h2 {
 }
 
 .main-title {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     color: #FFFFFF;
     letter-spacing: 0.2em;
     line-height: 1.5;
@@ -610,6 +619,10 @@ section h2 {
     margin-top: 15px;
     font-size: 0.9rem;
     color: #999999;
+}
+
+.sp-only {
+    display: none;
 }
 
 /* 画像エリアの調整 */
@@ -655,7 +668,7 @@ section h2 {
         gap: 40px;
     }
     .organization-name {
-        font-size: 2.4rem; /* スマホでは少し縮小してバランスを取る */
+        font-size: 3.0rem; /* スマホでは少し縮小してバランスを取る */
     }
     .intro-text, .intro-image-container {
         max-width: 100%;
@@ -663,6 +676,28 @@ section h2 {
     .main-title::after {
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .shiunkai-catch {
+        font-size: clamp(1.15rem, 5.2vw, 1.45rem);
+        gap: 0.25em;
+        letter-spacing: 0.04em;
+        margin: 36px auto;
+        line-height: 1.35;
+    }
+
+    .shiunkai-catch::before,
+    .shiunkai-catch::after {
+        width: min(110px, 60%);
+    }
+
+    .shiunkai-catch-line {
+        white-space: normal;
+        text-wrap: balance;
+    }
+
+    .sp-only {
+        display: block;
     }
 }
 
@@ -723,8 +758,8 @@ section h2 {
     font-size: 1.1rem;
     letter-spacing: 1px;
     color: #ffffff;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: 12px;
 }
 
 .sns-links {
@@ -1220,12 +1255,13 @@ footer .sns-links img[alt="X"] {
    ================================================================ */
 .faq {
     max-width: 1100px;
-    margin: 100px auto;
+    margin: 0 auto 35px;
     padding: 60px 70px;
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
     position: relative;
+    border-left: 5px solid var(--color-primary);
 }
 
 .faq h2 {
@@ -1271,6 +1307,37 @@ footer .sns-links img[alt="X"] {
         0 10px 30px rgba(0,0,0,.08);
     transition:.35s;
     padding: 40px;
+}
+
+.cta-card {
+    max-width: 1100px;
+    margin: 0 auto 35px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    border-left: 5px solid var(--color-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-width 0.2s ease;
+}
+
+.cta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-left-width: 10px;
+}
+
+.cta-title {
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.cta-text {
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 .qa{
@@ -1346,8 +1413,8 @@ footer {
     color: #ffffff;
     display: block;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 footer section {
@@ -1380,8 +1447,8 @@ footer p {
 
 .btn-primary-footer {
     display: inline-block;
-    background-color: #ffffff;
-    color: #C11E21 !important;
+    background-color: #E6C35C;
+    color: #2f0e11 !important;
     padding: 10px 24px;
     border-radius: 50px;
     font-size: 0.9rem;
@@ -1391,7 +1458,20 @@ footer p {
 }
 
 .btn-primary-footer:hover {
-    background-color: #f5f5f5;
+    background-color: #f0d67c;
+    transform: translateY(-2px);
+}
+
+#back-to-top {
+    background-color: #E6C35C;
+    color: #2f0e11 !important;
+    border: 1px solid #E6C35C;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#back-to-top:hover {
+    background-color: #f0d67c;
+    color: #2f0e11 !important;
     transform: translateY(-2px);
 }
 
@@ -1557,7 +1637,7 @@ footer p {
         display:block;
     }
     .shiunkai-catch{
-        font-size:2rem;
+        font-size:1.5rem;
         line-height:1.5;
         font-weight:bold;
         margin-bottom:35px;
