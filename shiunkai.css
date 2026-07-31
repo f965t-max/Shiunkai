@@ -570,7 +570,7 @@ section h2 {
         
     font-size: 4.0rem; /* 看板のような圧倒的な主役感が出るようにさらに大きく */
     font-weight: bold;
-    color: #2b6cb0;    /* 青系のアクセントで、見出しとして引き立つように調整 */
+    color: #E6C35C;    /* 青系のアクセントで、見出しとして引き立つように調整 */
     letter-spacing: 0.18em; /* 文字と文字の間隔を広げて品格を出す */
     margin-bottom: 10px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); 
@@ -895,9 +895,10 @@ footer .sns-links img[alt="X"] {
 }
 
 .card-1 .card-inner { background-image: url("概要・合格実績・歴史.png"); }
-.card-2 .card-inner { background-image: url("活動内容.jpg"); }
-.card-3 .card-inner { background-image: url("専用研究室について.jpg"); }
-.card-4 .card-inner { background-image: url("2026年度入会選考.jpg"); }
+.card-2 .card-inner { background-image: url("公認会計士合格祝賀会.jpg"); }
+.card-3 .card-inner { background-image: url("活動内容.jpg"); }
+.card-4 .card-inner { background-image: url("専用研究室について.jpg"); }
+.card-5 .card-inner { background-image: url("2026年度入会選考.jpg"); }
 
 .carousel-card .card-inner img {
     width: 100%;
@@ -1463,14 +1464,14 @@ footer p {
 }
 
 #back-to-top {
-    background-color: #E6C35C;
+    background-color: #ffffff;
     color: #2f0e11 !important;
-    border: 1px solid #E6C35C;
+    border: 1px solid #e0d6c7;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #back-to-top:hover {
-    background-color: #f0d67c;
+    background-color: #f7f7f7;
     color: #2f0e11 !important;
     transform: translateY(-2px);
 }
@@ -1491,24 +1492,27 @@ footer p {
 .footer-logo img:hover { opacity: 1; }
 
 .footer-header-area {
-    position: relative;        /* 子要素の absolute の起点にする */
+    position: relative;
     display: flex;
-    justify-content: center;   /* ロゴを中央に配置 */
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
+    min-height: 46px;
+    padding: 0 20px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .back-to-top-wrapper {
-    position: absolute;
-    right: 20px; /* 右端からの距離（好みで 30px や 5% などに調整してください） */
+    position: static;
+    margin-left: auto;
 }
 
 #back-to-top {
     display: inline-block;
     text-decoration: none;
-    white-space: nowrap; /* テキストの意図しない改行を防ぐ */
+    white-space: nowrap;
+    padding: 10px 18px;
 }
 
 #footercontent {
@@ -1613,12 +1617,22 @@ footer p {
         visibility: visible;
         pointer-events: auto;
     }
+    .footer-header-area {
+        justify-content: center;
+        padding: 0 12px;
+        min-height: 40px;
+    }
     .back-to-top-wrapper {
-        right: 12px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
     #back-to-top {
-        font-size: 0.75rem;
-        padding: 6px 12px;
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 12px 16px;
         border-radius: 20px;
         white-space: normal;
     }
