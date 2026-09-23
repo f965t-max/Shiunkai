@@ -36,13 +36,30 @@
         stage.style.transition = enabled ? "transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1)" : "none";
     };
 
-    const getSlideWidth = () => Math.round(viewport.getBoundingClientRect().width);
+    const syncCardWidth = () => {
+        const stageStyles = window.getComputedStyle(stage);
+        const sidePadding = parseFloat(stageStyles.paddingLeft) || 0;
+        const cardWidth = Math.max(0, viewport.getBoundingClientRect().width - sidePadding * 2);
+        stage.style.setProperty("--carousel-card-width", `${cardWidth}px`);
+    };
+
+    const getSlideWidth = () => {
+        const card = stage.querySelector(".carousel-card");
+        if (!card) return viewport.getBoundingClientRect().width;
+
+        const cardWidth = card.getBoundingClientRect().width;
+        const stageStyles = window.getComputedStyle(stage);
+        const gap = parseFloat(stageStyles.columnGap || stageStyles.gap) || 0;
+        return cardWidth + gap;
+    };
 
     const updateCarousel = () => {
+        syncCardWidth();
         const slideWidth = getSlideWidth();
         stage.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
         stage.querySelectorAll(".carousel-card").forEach((card, index) => {
             card.style.pointerEvents = index === currentIndex ? "auto" : "none";
+            card.classList.toggle("is-active", index === currentIndex);
         });
     };
 
